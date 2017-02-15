@@ -1,8 +1,8 @@
 class @ConvertWidget
 
   constructor: ->
-    @from_input = $('.from_user').val()
-    @to_input = $('.to_user')
+    @from_input = $('.from_user')
+    @to_input = $('.ahah')
 
     # @sgd = $('.sgd_input')
     # @usd = $('.usd_input')
@@ -10,23 +10,35 @@ class @ConvertWidget
 
     @convert_click = $('.convert-button')
 
-    @input_ccy_select = $('input[name=inputCcy]:checked').val()
-    @output_ccy_select = $('input[name=outputCcy]:checked').val()
-
+    @input_ccy_select
+    @output_ccy_select
     this.bind_convert()
 
     @sgd_usd = 0.7
     @sgd_eur = 0.67
+    @base_ccy_sgd = 1
+    @output_ccy
+    @final_output
 
-    @convert_click.on 'click', =>
-      console.log(this.input_ccy_select)
   bind_convert: =>
-    # @convert_click.on 'click', =>
-    #   console.log(this.input_ccy_select)
-      # if @input_ccy_select == "SGD"
-        # && @output_ccy_select == "USD"
-        # console.log('hello')
-        # @to_input.text(@from_input * @sgd_usd)
+    @convert_click.on 'click', =>
+        user_input = @from_input.val()
+        @input_ccy_select = $('input[name=inputCcy]:checked')
+        from_criteria = @input_ccy_select.val()
+        @output_ccy_select = $('output[name=outputCcy]:checked')
+        to_criteria = @output_ccy_select.val()
+
+        switch from_criteria
+          when "SGD" then @output_ccy = @base_ccy_sgd
+          when "USD" then @output_ccy = @base_ccy_sgd/@sgd_usd
+          when "EUR" then @output_ccy = @base_ccy_sgd/@sgd_eur
+
+        switch to_criteria
+          when "SGD" then @final_output = @output_ccy
+          when "USD" then @final_output = @output_ccy/ @sgd_usd
+          when "EUR" then @final_output = @output_ccy/ @sgd_eur
+
+        console.log(@final_output)
 
 
     # @sgd.click ->
@@ -37,6 +49,7 @@ class @ConvertWidget
 
   $('document').ready ->
     converter = new ConvertWidget
+
 
 
 
