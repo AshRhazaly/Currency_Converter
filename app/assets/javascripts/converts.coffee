@@ -25,7 +25,7 @@ class @ConvertWidget
         user_input = @from_input.val()
         @input_ccy_select = $('input[name=inputCcy]:checked')
         from_criteria = @input_ccy_select.val()
-        @output_ccy_select = $('output[name=outputCcy]:checked')
+        @output_ccy_select = $('input[name=outputCcy]:checked')
         to_criteria = @output_ccy_select.val()
 
         switch from_criteria
@@ -35,10 +35,12 @@ class @ConvertWidget
 
         switch to_criteria
           when "SGD" then @final_output = @output_ccy
-          when "USD" then @final_output = @output_ccy/ @sgd_usd
-          when "EUR" then @final_output = @output_ccy/ @sgd_eur
+          when "USD" then @final_output = @output_ccy * @sgd_usd
+          when "EUR" then @final_output = @output_ccy * @sgd_eur
 
-        console.log(@final_output)
+        output_value = (@final_output * user_input).toFixed(2)
+
+        @to_input.text(output_value)
 
 
     # @sgd.click ->
