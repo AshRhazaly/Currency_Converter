@@ -1,0 +1,33 @@
+  header.row
+    h1 Currency Converter
+  section.container.currency-input-one
+  
+  section.row
+    form.form-group.input-from
+      label for="from"  
+        strong From
+      input#usr.form-control.from_user type="text" /
+      
+      input type="radio" name="inputCcy" value="SGD"
+        | SGD
+      input type="radio" name="inputCcy" value="USD"
+        | USD
+      input type="radio" name="inputCcy" value="EUR"
+        | EUR
+
+    
+    button.btn.btn-default.convert-button type="button"  Convert!
+
+    form.form-group.input-to
+      label for="to"  
+        strong To
+      input#usr.form-control.to_user type="text" /
+      
+      input type="radio" name="outputCcy" value="SGD"
+        | SGD
+      input type="radio" name="outputCcy" value="USD"
+        | USD
+      input type="radio" name="outputCcy" value="EUR"
+        | EUR
+
+    

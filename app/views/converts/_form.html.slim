@@ -1,0 +1,9 @@
+= form_for @convert do |f|
+  - if @convert.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@convert.errors.count, "error")} prohibited this convert from being saved:"
+      ul
+        - @convert.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit

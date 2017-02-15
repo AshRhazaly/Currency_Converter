@@ -1,0 +1,2 @@
+class ConvertersController < ApplicationController
+end
